@@ -1,5 +1,5 @@
 steps:
   - script: |
-      npm install
+      npm install Web\package.json
       dotnet build NetCore.sln
     workingDirectory: $(System.DefaultWorkingDirectory)\NetCore
