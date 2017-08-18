@@ -5,31 +5,37 @@ steps:
       command: install
       workingDir: NetCore/Web
   - task: DotNetCoreCLI@1
+    name: Restore
     inputs:
       command: restore
       projects: "NetCore/NetCore.sln"
   - task: DotNetCoreCLI@1
+    name: Build
     inputs:
       command: build
       projects: "NetCore/NetCore.sln"
       arguments: "--configuration $(BuildConfiguration)"
   - task: DotNetCoreCLI@1
+    name: Test
     inputs:
       command: test
       projects: "**\\*Tests\\*.csproj"
       arguments: "--configuration $(BuildConfiguration) --logger:trx -- RunConfiguration.ResultsDirectory=$(Common.TestResultsDirectory)"
   - task: PublishTestResults@2
+    name: TestResults
     inputs:
       testRunner: VSTest
       testResultsFiles: "**/*.trx"
       searchFolder: $(Common.TestResultsDirectory)
     condition: always()
   - task: DotNetCoreCLI@1
+    name: Publish
     inputs:
       command: publish
       publishWebProjects: "True"
       arguments: "--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)"
   - task: PublishBuildArtifacts@1
+    name: Artifacts
     inputs:
       PathToPublish: "$(Build.ArtifactsStagingDirectory)"
       ArtifactName: "drop"
