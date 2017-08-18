@@ -5,6 +5,7 @@ steps:
     inputs:
       command: install
       workingDir: NetCore/Web
+    refName: Npm
   - task: DotNetCoreCLI@1
     inputs:
       command: restore
