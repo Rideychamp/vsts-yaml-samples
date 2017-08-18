@@ -2,8 +2,9 @@ steps:
   - script: |
       ECHO ON
       pushd NetCore\Web
-      npm install
+      call npm install
       popd
       pushd NetCore
+      dotnet restore NetCore.sln
       dotnet build NetCore.sln
       popd
