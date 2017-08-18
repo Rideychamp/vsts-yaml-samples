@@ -1,3 +1,5 @@
 steps:
   - script: |
-      dotnet build .\NetCore\NetCore.sln
+      npm install
+      dotnet build NetCore.sln
+    workingDirectory: $(System.DefaultWorkingDirectory)\NetCore
