@@ -1,0 +1,42 @@
+variables:
+  BuildConfiguration: Release
+steps:
+  - task: Npm@1
+    inputs:
+      command: install
+      workingDir: NetCore/Web
+  - task: DotNetCoreCLI@1
+    inputs:
+      command: restore
+      projects: "NetCore/NetCore.sln"
+    refName: CliRestore
+  - task: DotNetCoreCLI@1
+    inputs:
+      command: build
+      projects: "NetCore/NetCore.sln"
+      arguments: "--configuration $(BuildConfiguration)"
+    refName: CliBuild
+  - task: DotNetCoreCLI@1
+    inputs:
+      command: test
+      projects: "**\\*Tests\\*.csproj"
+      arguments: "--configuration $(BuildConfiguration) --logger:trx -- RunConfiguration.ResultsDirectory=$(Common.TestResultsDirectory)"
+    refName: CliTest
+  - task: PublishTestResults@2
+    inputs:
+      testRunner: VSTest
+      testResultsFiles: "**/*.trx"
+      searchFolder: $(Common.TestResultsDirectory)
+    condition: always()
+    refName: PublishTestResults
+  - task: DotNetCoreCLI@1
+    inputs:
+      command: publish
+      publishWebProjects: "True"
+      arguments: "--configuration $(BuildConfiguration) --output $(Build.ArtifactsStagingDirectory)"
+    refName: CliPublish
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathToPublish: "$(Build.ArtifactsStagingDirectory)"
+      ArtifactName: "drop"
+    refName: PublishArtifacts
