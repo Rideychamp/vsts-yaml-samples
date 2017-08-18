@@ -1,5 +1,6 @@
 steps:
   - task: Npm@1
+    name: Npm
     inputs:
       command: install
       workingDir: NetCore/Web
