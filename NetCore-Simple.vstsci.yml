@@ -1,7 +1,7 @@
 steps:
   - script: |
       pushd Web
-      npm install package.json
+      npm install
       popd
       
       dotnet build NetCore.sln
