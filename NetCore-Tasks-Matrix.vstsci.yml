@@ -45,4 +45,4 @@ steps:
     inputs:
       PathToPublish: "$(Build.ArtifactStagingDirectory)"
       ArtifactType: Container
-      ArtifactName: "drop_$(BuildConfiguraiton)"
+      ArtifactName: "drop_$(BuildConfiguration)"
