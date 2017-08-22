@@ -1,8 +1,9 @@
-matrix:
-  Release:
-    BuildConfiguration: Release
-  Debug:
-    BuildConfiguration: Debug
+queue:
+  matrix:
+    Release:
+      BuildConfiguration: Release
+    Debug:
+      BuildConfiguration: Debug
 steps:
   - task: Npm@1
     name: Npm
