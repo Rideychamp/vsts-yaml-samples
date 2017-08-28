@@ -2,6 +2,7 @@ queue:
   matrix:
     Release:
       BuildConfiguration: Release
+      BuildPlatform: x86
     Debug:
       BuildConfiguration: Debug
 steps:
