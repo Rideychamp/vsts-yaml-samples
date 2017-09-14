@@ -16,7 +16,7 @@ phases:
     steps:
       template: 
         name: templates/build-my-stuff-template.yml
-        parametes:
+        parameters:
           myinput: $(myvariable)
     dependsOn:
       - one
