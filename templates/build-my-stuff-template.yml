@@ -1,0 +1,5 @@
+---
+myinput:
+---
+steps:
+ - script: echo "The input is {{myinput}}"
