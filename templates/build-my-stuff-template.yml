@@ -2,4 +2,5 @@
 myinput:
 ---
 steps:
- - script: echo "The input is {{myinput}}"
+- checkout: none
+- script: echo "The input is {{myinput}}"
