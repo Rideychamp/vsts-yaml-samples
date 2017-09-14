@@ -14,6 +14,7 @@ phases:
   queue:
     parallel: $[ dependencies.one.outputs['MySlices.testSlices'] ]
   steps:
+  - checkout: none
   - template: templates/build-my-stuff-template.yml
     parameters:
       myinput: $(myvariable)
