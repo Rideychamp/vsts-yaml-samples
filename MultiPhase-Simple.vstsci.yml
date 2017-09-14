@@ -3,7 +3,7 @@ phases:
     steps:
       - script: echo Hello world!
       - script: echo Hello again, world!
-      - script: "echo ##vso[task.setvariable variable=testvar;isoutput=true;isSecret=true]testvalue"
+      - script: "echo ##vso[task.setvariable variable=testvar;isoutput=true;]testvalue"
         name: MyCmdLine
       - script: "echo ##vso[task.setvariable variable=testSlices;isoutput=true;]5"
         name: MySlices
@@ -16,6 +16,5 @@ phases:
     steps:
       - script: |
           echo $(myvariable)
-
     dependsOn:
       - one
