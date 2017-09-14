@@ -5,6 +5,7 @@ queue:
       BuildPlatform: x86
     Debug:
       BuildConfiguration: Debug
+      BuildPlatform: x86
 steps:
   - task: Npm@1
     name: Npm
