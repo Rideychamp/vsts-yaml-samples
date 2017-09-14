@@ -1,19 +1,19 @@
 phases:
   - phase: one
-      steps:
-        - script: echo Hello world!
-        - script: echo Hello again, world!
-        - script: "echo ##vso[task.setvariable variable=testvar;isoutput=true;]testvalue"
-          name: MyCmdLine
-        - script: "echo ##vso[task.setvariable variable=testSlices;isoutput=true;]5"
-          name: MySlices
+    steps:
+      - script: echo Hello world!
+      - script: echo Hello again, world!
+      - script: "echo ##vso[task.setvariable variable=testvar;isoutput=true;]testvalue"
+        name: MyCmdLine
+      - script: "echo ##vso[task.setvariable variable=testSlices;isoutput=true;]5"
+        name: MySlices
   - phase: two
-      condition: eq(variables.hello, 'yes')
-      variables: 
-        myvariable: $[ dependencies.one.outputs['MyCmdLine.testvar'] ]
-      queue:
-        parallel: $[ dependencies.one.outputs['MySlices.testSlices'] ]
-      steps:
-        - script: set
-      dependsOn:
-        - one
+    condition: eq(variables.hello, 'yes')
+    variables: 
+      myvariable: $[ dependencies.one.outputs['MyCmdLine.testvar'] ]
+    queue:
+      parallel: $[ dependencies.one.outputs['MySlices.testSlices'] ]
+    steps:
+      - script: set
+    dependsOn:
+      - one
