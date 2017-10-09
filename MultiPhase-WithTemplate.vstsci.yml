@@ -8,7 +8,7 @@ phases:
   - script: "echo ##vso[task.setvariable variable=testSlices;isoutput=true;]5"
     name: MySlices
 - phase: two
-  condition: eq(variables.myvariable, 'testvalue')
+  condition: eq(variables.hello, 'yes')
   variables: 
     myvariable: $[ dependencies.one.outputs['MyCmdLine.testvar'] ]
   queue:
