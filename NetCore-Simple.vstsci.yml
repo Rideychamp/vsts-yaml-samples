@@ -7,4 +7,5 @@ steps:
       pushd NetCore
       dotnet restore NetCore.sln
       dotnet build NetCore.sln
+      rem small change
       popd
